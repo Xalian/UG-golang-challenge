@@ -1,4 +1,4 @@
-package vulnParser
+package jsonHandler
 
 import (
 	"encoding/json"
