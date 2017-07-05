@@ -44,11 +44,13 @@ func EncodeVulns(vulns *[]Vuln) []byte {
 
 //RemoveMalformedInput removes structs will nil values from JSON conversion
 func RemoveMalformedInput(vulns *[]Vuln) *[]Vuln {
+
 	sanitised := new([]Vuln)
 	for _, value := range *vulns {
 		if value.ID != 0 && value.Severity != 0 && value.Title != "" && value.Date != "" {
 			*sanitised = append(*sanitised, value)
 		}
 	}
+
 	return sanitised
 }
