@@ -1,3 +1,0 @@
-[{"id":1,"severity":9,"title":"Multiple cross-site scripting (XSS) vulnerabilities in AbleSpace 1.0","date_reported":"2016-07-04"},
-{"id":2,"severity":5,"title":"Multiple PHP remote file inclusion vulnerabilities in GoSamba","date_reported":"2016-02-17"},
-{"id":4,"severity":2,"title":"Stack-based buffer overflow in FileWatcher in Google Chrome","date_reported":"2015-05-21"}]
