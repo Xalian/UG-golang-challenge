@@ -1,4 +1,4 @@
-package jsonVulnUtil
+package jsonvuln
 
 import (
 	"encoding/json"

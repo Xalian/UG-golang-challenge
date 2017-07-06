@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"net/http"
+
+	"github.com/xalian/ugchallenge/jsonvuln"
 )
 
 func main() {
@@ -11,7 +13,7 @@ func main() {
 	fileNamePtr := flag.String("file", "data/data.json", "the path of the JSON file. Default data/data.json")
 	flag.Parse()
 
-	vulns := new([]Vuln)
+	vulns := new([]jsonvuln.Vuln)
 
 	http.HandleFunc("/", FilterHandler)
 	http.ListenAndServe(*portPtr, nil)
