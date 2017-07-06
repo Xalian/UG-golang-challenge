@@ -13,7 +13,7 @@ func main() {
 	fileNamePtr := flag.String("file", "data/data.json", "the path of the JSON file. Default data/data.json")
 	flag.Parse()
 
-	vulns := new([]jsonvuln.Vuln)
+	vulns := jsonvuln.RemoveMalformedInput(jsonvuln.ParseJSON(*fileNamePtr))
 
 	http.HandleFunc("/", FilterHandler)
 	http.ListenAndServe(*portPtr, nil)
