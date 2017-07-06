@@ -48,6 +48,7 @@ func RemoveMalformedInput(vulns []Vuln) []Vuln {
 	sanitised := new([]Vuln)
 	for _, value := range vulns {
 		if value.ID != 0 && value.Severity != 0 && value.Title != "" && value.Date != "" {
+			//TODO: check valid date format
 			*sanitised = append(*sanitised, value)
 		}
 		//TODO: Log erronous input?
