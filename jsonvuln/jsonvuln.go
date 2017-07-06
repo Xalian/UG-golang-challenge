@@ -15,7 +15,7 @@ type Vuln struct {
 }
 
 //ParseJSON returns the JSON in the file found at the given path
-func ParseJSON(fileName string) *[]Vuln {
+func ParseJSON(fileName string) []Vuln {
 
 	dataFile, err := os.Open(fileName)
 	if err != nil {
@@ -28,11 +28,11 @@ func ParseJSON(fileName string) *[]Vuln {
 		log.Fatal(err)
 	}
 
-	return json
+	return *json
 }
 
 //EncodeVulns returns an array of Vulns as JSON
-func EncodeVulns(vulns *[]Vuln) []byte {
+func EncodeVulns(vulns []Vuln) []byte {
 
 	b, err := json.Marshal(vulns)
 	if err != nil {
@@ -43,15 +43,15 @@ func EncodeVulns(vulns *[]Vuln) []byte {
 }
 
 //RemoveMalformedInput removes structs will nil values from JSON conversion
-func RemoveMalformedInput(vulns *[]Vuln) *[]Vuln {
+func RemoveMalformedInput(vulns []Vuln) []Vuln {
 
 	sanitised := new([]Vuln)
-	for _, value := range *vulns {
+	for _, value := range vulns {
 		if value.ID != 0 && value.Severity != 0 && value.Title != "" && value.Date != "" {
 			*sanitised = append(*sanitised, value)
 		}
 		//TODO: Log erronous input?
 	}
 
-	return sanitised
+	return *sanitised
 }

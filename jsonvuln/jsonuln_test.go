@@ -38,15 +38,15 @@ func TestParseJSON(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want *[]Vuln
+		want []Vuln
 	}{
 		{name: "ValidTest",
 			args: args{fileName: "../data/validtest.json"},
-			want: &validTest},
+			want: validTest},
 
 		{name: "Bad Input",
 			args: args{fileName: "../data/badinput.json"},
-			want: &badInput}}
+			want: badInput}}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -94,16 +94,16 @@ func TestRemoveMalformedInput(t *testing.T) {
 			Title:    "Multiple PHP remote file inclusion vulnerabilities in GoSamba",
 			Date:     "2016-02-17"}}
 	type args struct {
-		vulns *[]Vuln
+		vulns []Vuln
 	}
 	tests := []struct {
 		name string
 		args args
-		want *[]Vuln
+		want []Vuln
 	}{
 		{name: "Test",
-			args: args{vulns: &badInput},
-			want: &validOutput},
+			args: args{vulns: badInput},
+			want: validOutput},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
