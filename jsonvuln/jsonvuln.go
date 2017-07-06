@@ -31,17 +31,6 @@ func ParseJSON(fileName string) []Vuln {
 	return *json
 }
 
-//EncodeVulns returns an array of Vulns as JSON
-func EncodeVulns(vulns []Vuln) []byte {
-
-	b, err := json.Marshal(vulns)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return b
-}
-
 //RemoveMalformedInput removes structs will nil values from JSON conversion
 func RemoveMalformedInput(vulns []Vuln) []Vuln {
 
