@@ -41,11 +41,11 @@ func TestParseJSON(t *testing.T) {
 		want *[]Vuln
 	}{
 		{name: "ValidTest",
-			args: args{fileName: "data/validtest.json"},
+			args: args{fileName: "../data/validtest.json"},
 			want: &validTest},
 
 		{name: "Bad Input",
-			args: args{fileName: "data/badinput.json"},
+			args: args{fileName: "../data/badinput.json"},
 			want: &badInput}}
 
 	for _, tt := range tests {
