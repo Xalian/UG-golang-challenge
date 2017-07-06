@@ -9,8 +9,8 @@ import (
 
 //FilterLimit returns a slice of length limit or the length of vulns, whichever is lower
 func FilterLimit(limit int, vulns []jsonvuln.Vuln) []jsonvuln.Vuln {
-	limit = max(limit, len(vulns))
-	return vulns[0 : limit-1]
+	limit = min(limit, len(vulns))
+	return vulns[0:limit]
 }
 
 //FilterDate returns a slice containing only Vulns with dates after the limit
@@ -35,14 +35,14 @@ func FilterSeverity(severity int, vulns []jsonvuln.Vuln) []jsonvuln.Vuln {
 	return *filtered
 }
 
-func max(a, b int) int {
+func min(a, b int) int {
 	if a > b {
-		return a
+		return b
 	}
-	return b
+	return a
 }
 
-//dateSince checks if date is later than limit
+//dateSince checks if date is later or equal than limit
 func dateSince(date, limit string) bool {
 
 	dateParts := strings.Split(date, "-")
@@ -69,7 +69,7 @@ func dateSince(date, limit string) bool {
 	dateDay, _ := strconv.Atoi(dateParts[2])
 	limitDay, _ := strconv.Atoi(limitParts[2])
 	switch {
-	case dateDay > limitDay:
+	case dateDay >= limitDay:
 		return true
 	case dateDay < limitDay:
 		return false
