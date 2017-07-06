@@ -15,6 +15,12 @@ func main() {
 
 	vulns := jsonvuln.RemoveMalformedInput(jsonvuln.ParseJSON(*fileNamePtr))
 
-	http.HandleFunc("/", FilterHandler)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) { filterHandler(w, r, vulns) })
 	http.ListenAndServe(*portPtr, nil)
+}
+
+func filterHandler(w http.ResponseWriter, r *http.Request, vulns *[]jsonvuln.Vuln) {
+	limit := r.URL.Query().Get("limit")
+	minSeverity := r.URL.Query().Get("severity_at_least")
+	since := r.URL.Query().Get("since")
 }
