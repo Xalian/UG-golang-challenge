@@ -50,6 +50,7 @@ func RemoveMalformedInput(vulns *[]Vuln) *[]Vuln {
 		if value.ID != 0 && value.Severity != 0 && value.Title != "" && value.Date != "" {
 			*sanitised = append(*sanitised, value)
 		}
+		//TODO: Log erronous input?
 	}
 
 	return sanitised
