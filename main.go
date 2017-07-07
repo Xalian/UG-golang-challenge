@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"net/http"
+	"regexp"
 	"strconv"
 
 	"github.com/xalian/ugchallenge/filters"
@@ -34,8 +35,10 @@ func filterHandler(w http.ResponseWriter, r *http.Request, vulns []jsonvuln.Vuln
 		}
 	}
 	if since != "" {
-		//TODO: check valid date format
-		vulns = filters.FilterDate(since, vulns)
+		var validDate = regexp.MustCompile(`^[0-9]{4}-[0-9]{2}-[0-9]{2}$`)
+		if validDate.MatchString(since) {
+			vulns = filters.FilterDate(since, vulns)
+		}
 	}
 	if limit != "" {
 		lmt, err := strconv.Atoi(limit)
