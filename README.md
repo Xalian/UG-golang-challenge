@@ -45,10 +45,10 @@ An example of a properly formatted Limit param is:
 
 ### Combining Parameters
 Parameters can be combined in the same url by placing `&` in between each parameter, the ordering does not matter.  
-A properly formatted query involving all three parameters is:
+A properly formatted query involving all three parameters is:  
 `/?limit=17&since=2016-12-23&severity_at_least=4`
 
-##Erroneous Input
+## Erroneous Input
 
 ## Parameters
 Any unsupported parameters provided to the program are ignored and any supported parameters with incorrect input are also ignored.
