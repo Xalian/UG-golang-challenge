@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"os"
+	"regexp"
 )
 
 //Vuln is how the JSON this program reads should be structured
@@ -34,11 +35,13 @@ func ParseJSON(fileName string) []Vuln {
 //RemoveMalformedInput removes structs will nil values from JSON conversion
 func RemoveMalformedInput(vulns []Vuln) []Vuln {
 
+	var validDate = regexp.MustCompile(`^[0-9]{4}-[0-9]{2}-[0-9]{2}$`)
 	sanitised := new([]Vuln)
 	for _, value := range vulns {
 		if value.ID != 0 && value.Severity != 0 && value.Title != "" && value.Date != "" {
-			//TODO: check valid date format
-			*sanitised = append(*sanitised, value)
+			if validDate.MatchString(value.Date) {
+				*sanitised = append(*sanitised, value)
+			}
 		}
 		//TODO: Log erronous input?
 	}
