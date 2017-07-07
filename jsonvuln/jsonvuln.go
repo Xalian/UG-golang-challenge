@@ -24,12 +24,16 @@ func ParseJSON(fileName string) []Vuln {
 	}
 
 	jsonParser := json.NewDecoder(dataFile)
-	json := new([]Vuln)
-	if err = jsonParser.Decode(json); err != nil {
-		log.Fatal(err)
+	jsonF := new([]Vuln)
+	if err = jsonParser.Decode(jsonF); err != nil {
+		if terr, ok := err.(*json.UnmarshalTypeError); ok {
+			log.Print(terr)
+		} else {
+			log.Fatal(err)
+		}
 	}
 
-	return *json
+	return *jsonF
 }
 
 //RemoveMalformedInput removes structs will nil values from JSON conversion
