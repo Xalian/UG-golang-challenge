@@ -15,23 +15,27 @@ func FilterLimit(limit int, vulns []jsonvuln.Vuln) []jsonvuln.Vuln {
 
 //FilterDate returns a slice containing only Vulns with dates after the limit
 func FilterDate(limitDate string, vulns []jsonvuln.Vuln) []jsonvuln.Vuln {
+
 	filtered := new([]jsonvuln.Vuln)
 	for _, value := range vulns {
 		if dateSince(value.Date, limitDate) {
 			*filtered = append(*filtered, value)
 		}
 	}
+
 	return *filtered
 }
 
 //FilterSeverity returns a slice containing only Vulns with a Severity higher or equal to the limit
 func FilterSeverity(severity int, vulns []jsonvuln.Vuln) []jsonvuln.Vuln {
+
 	filtered := new([]jsonvuln.Vuln)
 	for _, value := range vulns {
 		if value.Severity >= severity {
 			*filtered = append(*filtered, value)
 		}
 	}
+
 	return *filtered
 }
 
